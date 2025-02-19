@@ -1,5 +1,8 @@
 #include<iostream>
 #include<cstdlib> //random num
+#include<limits>
+#include<ctime>
+#include<algorithm>
 
 int main(){
     int secretNum;
@@ -9,8 +12,9 @@ int main(){
     int attemps=0;
     
     srand(static_cast<unsigned int>(time(0)));
+    std::cout<<"input your level:(1-3)"<<std::endl;
 
-
+    std::cin>>diffculty;
     switch(diffculty){
         case 1:
             secretNum=rand() % 50 + 1;
@@ -21,10 +25,12 @@ int main(){
             secretNum=rand() % 100 + 1;
             maxAttemps = 7;
             std::cout<<"you select middle level"<<std::endl;
+            break;
         case 3:
             secretNum = rand() % 200 + 1;
             maxAttemps = 5;
             std::cout<<"you select diffcult level"<<std::endl;
+            break;
         default:
             std::cout<<"invalid input game over"<<std::endl;
             return 1;
@@ -37,25 +43,22 @@ int main(){
         std::cin>>usrGuess;
         //input problem
         if(std::cin.fail()){
-
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         attemps++;
-        std::cout<<"please input your guess: "<<std::endl;
-        std::cin>>usrGuess;
         if(usrGuess>secretNum){
             std::cout<<"too big"<<std::endl;
             continue;
         }else if(usrGuess<secretNum){
             std::cout<<"too small"<<std::endl;
         }else{
-            std::cout<<"correct!!! num is :"<<secretNum<<"you use "<<maxAttemps-attemps<<"times"<<std::endl;
+            std::cout<<"correct!!! num is :"<<secretNum<<"you use "<<attemps<<"  times"<<std::endl;
+            return 0;
         }
         
-
-
-        std::cout<<"pity you fail"<<std::endl;
-      
+     
     }
-
+    std::cout<<"pity you fail"<<std::endl;
     return 0;
 }
