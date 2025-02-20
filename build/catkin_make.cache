@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/ros1/work2025/devel -DCMAKE_INSTALL_PREFIX=/home/ros1/work2025/install -G Unix Makefiles
